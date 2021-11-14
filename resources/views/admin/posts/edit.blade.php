@@ -1,5 +1,8 @@
     <x-layout>
-        <x-setting :heading="'Edit Post: ' . ucwords($post->title)">
+        @component('components.admin-panel', [
+            'user' => auth()->user(),
+            'heading' => "Edit Post: " . ucwords($post->title)])
+
             <form method="POST" action="/admin/posts/{{ $post->id }}"enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
@@ -35,5 +38,5 @@
                 <x-form.button>Update</x-form.button>
 
             </form>
-        </x-setting>
+        @endcomponent
     </x-layout>

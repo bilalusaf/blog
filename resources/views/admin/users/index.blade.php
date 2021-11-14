@@ -1,5 +1,7 @@
 <x-layout>
-    <x-setting heading="Manage Users">
+    @component('components.admin-panel', [
+                'user' => auth()->user(),
+                'heading' => "Manage Users"])
         <div class="flex flex-col">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -53,5 +55,5 @@
                 </div>
             </div>
         </div>
-    </x-setting>
+    @endcomponent
 </x-layout>

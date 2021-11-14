@@ -1,5 +1,7 @@
     <x-layout>
-        <x-setting heading="Create New Category">
+        @component('components.admin-panel', [
+                    'user' => auth()->user(),
+                    'heading' => "Create New Category"])
             <form method="POST" action="/admin/categories"enctype="multipart/form-data">
                 @csrf
 
@@ -8,5 +10,5 @@
                 <x-form.button>Publish</x-form.button>
 
             </form>
-        </x-setting>
+        @endcomponent
     </x-layout>

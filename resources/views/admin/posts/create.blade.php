@@ -1,5 +1,8 @@
     <x-layout>
-        <x-setting heading="Publish New Post">
+        @component('components.admin-panel', [
+                    'user' => auth()->user(),
+                    'heading' => "Create New Post"])
+
             <form method="POST" action="/admin/posts"enctype="multipart/form-data">
                 @csrf
 
@@ -29,5 +32,6 @@
                 <x-form.button>Publish</x-form.button>
 
             </form>
-        </x-setting>
+        @endcomponent
+
     </x-layout>
