@@ -2,9 +2,9 @@
     <section class="py-8 max-w-4xl mx-auto">
         <h1 class="text-lg font-bold mb-8 pb-2 border-b">
             @if ($user->id == auth()->user()->id)
-            Hello {{ $user->profile->name }}, welcome to your profile.
+                Hello {{ $user->profile->name }}, welcome to your profile.
             @else
-            {{ $user->name }}'s Profile.
+                {{ $user->name }}'s Profile.
             @endif
         </h1>
         <div class="flex">
@@ -12,16 +12,16 @@
                 <h4 class="font-semibold mb-4">
                     Navigation
                 </h4>
-                <ul style="max-width: 75%">
-                    <li>
-                        <a href="/profiles/{{ $user->profile->id }}" class="{{ request()->is('profiles/'.$user->profile->id) ? 'text-blue-500' : '' }}">View Profile</a>
-                    </li>
-                    <li>
-                            @if ($user->id == auth()->user()->id)
-                                <a href="/profiles/{{ $user->profile->id }}/edit" class="{{ request()->is('profiles/'.$user->profile->id.'/edit') ? 'text-blue-500' : '' }}">Edit Profile</a>
-                            @endif
-                    </li>
-                </ul>
+                <x-list.unordered>
+                    <x-list.item>
+                        <x-list.link link="profiles/{{ $user->profile->id }}" name="View Profile" />
+                    </x-list.item>
+                    <x-list.item>
+                        @if ($user->id == auth()->user()->id)
+                            <x-list.link link="profiles/{{ $user->profile->id }}/edit" name="Edit Profile" />
+                        @endif
+                    </x-list.item>
+                </x-list.unordered >
             </aside>
             <main class="flex-1">
                 <x-panel>
@@ -57,6 +57,7 @@
                             </div>
                         </div>
                     </div>
+
                 </x-panel>
             </main>
         </div>

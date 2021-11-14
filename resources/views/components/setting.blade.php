@@ -8,23 +8,23 @@
                 <h4 class="font-semibold mb-4">
                     Navigation
                 </h4>
-                <ul style="max-width: 75%">
-                    <li>
-                        <a href="/admin/posts" class="{{ request()->is('admin/posts') ? 'text-blue-500' : '' }}">All Posts</a>
-                    </li>
-                    <li>
-                        <a href="/admin/posts/create" class="{{ request()->is('admin/posts/create') ? 'text-blue-500' : '' }}">New Post</a>
-                    </li>
-                    <li class="pt-2 border-t mt-2">
-                        <a href="/admin/categories" class="{{ request()->is('admin/categories') ? 'text-blue-500' : '' }}">All Categories</a>
-                    </li>
-                    <li>
-                        <a href="/admin/categories/create" class="{{ request()->is('admin/categories/create') ? 'text-blue-500' : '' }}">New Category</a>
-                    </li>
-                    <li class="pt-2 border-t mt-2">
-                        <a href="/admin/users" class="{{ request()->is('admin/users') ? 'text-blue-500' : '' }}">All Users</a>
-                    </li>
-                </ul>
+                <x-list.unordered>
+                    <x-list.item>
+                        <x-list.link link="admin/posts" name="All Posts" />
+                    </x-list.item>
+                    <x-list.item>
+                        <x-list.link link="admin/posts/create" name="New Post" />
+                    </x-list.item>
+                    <x-list.item class="pt-2 border-t mt-2">
+                        <x-list.link link="admin/categories" name="All Categories" />
+                    </x-list.item>
+                    <x-list.item>
+                        <x-list.link link="admin/categories/create" name="New Category" />
+                    </x-list.item>
+                    <x-list.item class="pt-2 border-t mt-2">
+                        <x-list.link link="admin/users" name="All Users" />
+                    </x-list.item>
+                </x-list.unordered>
             </aside>
             <main class="flex-1">
                 <x-panel>

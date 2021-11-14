@@ -29,14 +29,17 @@
                                 </button>
                         </x-slot>
                         @admin
-                        <x-dropdown-item href="/admin/posts" :active="request()->is('admin/posts')">Dashboard</x-dropdown-item>
-                        <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">New Post</x-dropdown-item>
-                        <x-dropdown-item href="/admin/users" :active="request()->is('admin/users')">Manage Users</x-dropdown-item>
+                            <x-dropdown-item href="/admin/posts" :active="request()->is('admin/posts')">Admin Dashboard</x-dropdown-item>
+                            <x-dropdown-item href="../profiles/{{ auth()->user()->profile->id ?? 'create' }}"
+                                             :active="request()->is('profiles/*')"
+                            >Profile</x-dropdown-item>
+                        @else
+                            <x-dropdown-item href="profiles/{{ auth()->user()->profile->id ?? 'create' }}"
+                                             :active="request()->is('profiles/*')"
+                            >Profile</x-dropdown-item>
                         @endadmin
 
-                        <x-dropdown-item href="profiles/{{ auth()->user()->profile->id ?? 'create' }}"
-                                         :active="request()->is('profiles/*')"
-                        >Profile</x-dropdown-item>
+
 
                         <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropdown-item>
                         <form method="POST" action="/logout" class="hidden" id="logout-form">

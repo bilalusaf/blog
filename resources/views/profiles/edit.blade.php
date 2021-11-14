@@ -9,14 +9,14 @@
                     Navigation
                 </h4>
                 <ul style="max-width: 75%">
-                    <li>
+                    <x-list.item>
                         <a href="/profiles/{{ $user->profile->id }}" class="{{ request()->is('profiles/'.$user->profile->id) ? 'text-blue-500' : '' }}">View Profile</a>
-                    </li>
-                    <li>
+                    </x-list.item>
+                    <x-list.item>
                         @if ($user->id == auth()->user()->id)
                             <a href="/profiles/{{ $user->profile->id }}/edit" class="{{ request()->is('profiles/'.$user->profile->id.'/edit') ? 'text-blue-500' : '' }}">Edit Profile</a>
                         @endif
-                    </li>
+                    </x-list.item>
                 </ul>
             </aside>
             <main class="flex-1">
