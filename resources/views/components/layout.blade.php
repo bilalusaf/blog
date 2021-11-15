@@ -17,7 +17,7 @@
         <nav class="md:flex md:justify-between md:items-center">
             <div>
                 <a href="/">
-                    <img src="{{ URL::asset('./images/logo.svg') }}" alt="Logo" width="165" height="16">
+                    <img src="{{ URL::asset('/storage/default/logo.jpg') }}" alt="Logo" width="165" height="16">
                 </a>
             </div>
 
