@@ -14,6 +14,13 @@ class Post extends Model
     protected $fillable = ['title', 'slug', 'excerpt', 'body', 'category_id', 'user_id', 'thumbnail'];
     protected $with = ['category', 'author'];
 
+    public function postThumbnail()
+    {
+        $defaultImage = $this->image ? $this->image : 'default/post.jpg';
+
+        return '/storage/' . $defaultImage;
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $posts = Post::latest();
