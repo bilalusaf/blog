@@ -6,6 +6,7 @@ use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class ProfilesController extends Controller
     {
@@ -54,14 +55,18 @@ class ProfilesController extends Controller
                 'description' => 'required',
             ]);
 
-            if ($attributes['image'] ?? false) {
-                $attributes['image'] = request()->file('image')->store('avatars');
+
+            if ($attributes['image'] ?? true) {
+                $imagePath = request()->file('image')->store('avatars');
+                $image = Image::make("storage/{$imagePath}")->orientate()->fit(96,96);
             }
+//            dd($image);
+            $attributes['image'] = "avatars/".$image->basename;
 
             $attributes['user_id'] = $profile->user->id;
 
             $profile->update($attributes);
-
+            
             return redirect ("profiles/{$user->profile->id}")->with('success', 'Profile Updated!');
         }
     }
