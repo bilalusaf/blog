@@ -16,9 +16,9 @@ class Post extends Model
 
     public function postThumbnail()
     {
-        $defaultImage = $this->image ? $this->image : 'default/post.jpg';
+        $defaultImage = $this->image ? $this->image : 'post.jpg';
 
-        return '/storage/' . $defaultImage;
+        return '/images/' . $defaultImage;
     }
 
     public function scopeFilter($query, array $filters)
