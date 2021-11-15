@@ -13,6 +13,13 @@ use Illuminate\Database\Eloquent\Model;
         protected $guarded = [];
 //        protected $fillable = ['name', 'email', 'description', 'user_id'];
 
+        public function profileImage()
+        {
+            $defaultImage = $this->image ? $this->image : 'default/profile.jpg';
+
+            return '/storage/' . $defaultImage;
+        }
+
         public function user()
         {
             return $this->belongsTo(User::class);

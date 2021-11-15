@@ -55,18 +55,16 @@ class ProfilesController extends Controller
                 'description' => 'required',
             ]);
 
-
-            if ($attributes['image'] ?? true) {
+            if ($attributes['image']) {
                 $imagePath = request()->file('image')->store('avatars');
-                $image = Image::make("storage/{$imagePath}")->orientate()->fit(96,96);
+                $image = Image::make(public_path("storage/{$imagePath}"))->orientate()->fit(96,96);
+                $image->save();
             }
-//            dd($image);
-            $attributes['image'] = "avatars/".$image->basename;
 
-            $attributes['user_id'] = $profile->user->id;
+            $attributes['user_id'] = $user->id;
 
-            $profile->update($attributes);
-            
+            $profile->update(array_merge($attributes, ['image' => $imagePath]));
+
             return redirect ("profiles/{$user->profile->id}")->with('success', 'Profile Updated!');
         }
     }

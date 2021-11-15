@@ -9,7 +9,7 @@
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                         <div class="grid grid-cols-12">
                             <div class="grid col-span-4">
-                                <img src="{{ asset('storage/' . $user->profile->image) }}" alt="" width="" height="" class="rounded-full h-24 w-24 m-2">
+                                <img src="{{ asset($user->profile->profileImage()) }}" alt="" width="" height="" class="rounded-full h-24 w-24 m-2">
                             </div>
                             <div class="grid col-span-8 pt-2">
                                 <div class="grid grid-rows-3">
