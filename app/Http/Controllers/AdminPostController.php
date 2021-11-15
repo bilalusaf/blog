@@ -16,10 +16,10 @@ class AdminPostController extends Controller
             ]);
         }
 
-        public function create()
+        public function create(Post $post)
         {
 
-            return view ('admin.posts.create');
+            return view ('admin.posts.create', compact('post'));
         }
 
         /**
@@ -27,7 +27,6 @@ class AdminPostController extends Controller
          */
         public function store()
         {
-
             $attributes = array_merge($this->validatePost(), [
                 'user_id' => auth()->id(),
                 'slug' => Str::slug(request('title'),'-') . '-' . time(),
@@ -51,9 +50,6 @@ class AdminPostController extends Controller
             if ($attributes['thumbnail'] ?? false) {
                 $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
             }
-//            elseif ($attributes['thumbnail'] ?? true) {
-//                $attributes['slug'] = 'public/images/illustration-1.png';
-//            }
 
             $post->update($attributes);
 

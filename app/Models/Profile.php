@@ -15,9 +15,9 @@ use Illuminate\Database\Eloquent\Model;
 
         public function profileImage()
         {
-            $defaultImage = $this->image ? $this->image : 'profile.jpg';
+            $defaultImage = $this->image ? '/storage/' . $this->image : '/images/profile.jpg';
 
-            return '/images/' . $defaultImage;
+            return $defaultImage;
         }
 
         public function user()

@@ -1,9 +1,9 @@
     <x-layout>
         @component('components.admin-panel', [
             'user' => auth()->user(),
-            'heading' => "Edit Post: " . ucwords($post->title)])
+            'heading' => "Edit Post:"  . ucwords($post->title)])
 
-            <form method="POST" action="/admin/posts/{{ $post->id }}"enctype="multipart/form-data">
+            <form method="POST" action="admin/posts/{{ $post->id }}" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
 
@@ -20,20 +20,20 @@
 
                 <x-form.field>
                     <x-form.label name="category" />
-                    <select name="category_id" id="category_id" class="relative focus:outline-none focus:ring">
+                        <select name="category_id" id="category_id" class="relative focus:outline-none focus:ring">
 
-                        @foreach(\App\Models\Category::all() as $category)
-                            <option
-                                value="{{ $category->id }}"
-                                {{ old('category_id', $post->category_id) == $category->id ? 'selected' : '' }}
-                            >{{ ucwords($category->name) }}</option>
-                        @endforeach
+                            @foreach(\App\Models\Category::all() as $category)
+                                <option
+                                    value="{{ $category->id }}"
+                                    {{ old('category_id', $post->category_id) == $category->id ? 'selected' : '' }}
+                                >{{ ucwords($category->name) }}</option>
+                            @endforeach
 
-                    </select>
+                        </select>
                     <x-form.error name="category" />
                 </x-form.field>
 
-                <x-form.textarea name="body" rows="4">{{ old('body', $post->body) }}</x-form.textarea>
+                <x-form.textarea name="body" rows="10">{{ old('body', $post->body) }}</x-form.textarea>
 
                 <x-form.button>Update</x-form.button>
 
