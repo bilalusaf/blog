@@ -30,7 +30,7 @@ class ProfilesController extends Controller
 
             $user = $profile->user;
 
-            return view ('profiles.show', compact('user', 'profile'));
+            return redirect('/')->with('success', 'Your account has been created.');
         }
 
         public function edit(Profile $profile)

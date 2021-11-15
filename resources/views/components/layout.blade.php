@@ -30,11 +30,11 @@
                         </x-slot>
                         @admin
                             <x-dropdown-item href="/admin/posts" :active="request()->is('admin/posts')">Admin Dashboard</x-dropdown-item>
-                            <x-dropdown-item href="../profiles/{{ auth()->user()->profile->id ?? 'create' }}"
+                            <x-dropdown-item href="{{ URL::asset('profiles/'.auth()->user()->profile->id) }}"
                                              :active="request()->is('profiles/*')"
                             >Profile</x-dropdown-item>
                         @else
-                            <x-dropdown-item href="profiles/{{ auth()->user()->profile->id ?? 'create' }}"
+                            <x-dropdown-item href="{{ URL::asset('profiles/'.auth()->user()->profile->id) }}"
                                              :active="request()->is('profiles/*')"
                             >Profile</x-dropdown-item>
                         @endadmin

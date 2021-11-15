@@ -25,6 +25,6 @@ use App\Models\User;
 
             auth()->login($user);
 
-            return redirect('/')->with('success', 'Your account has been created.');
+            return redirect('profiles/create');
         }
     }
