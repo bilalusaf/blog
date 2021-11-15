@@ -3,7 +3,7 @@
     <x-panel class="bg-gray-50">
         <article class="flex space-x-4">
             <div class="flex-shrink-0">
-                <img src="{{ asset($comment->author->profile->profileImage()) }}" alt="" width="" height="" class="rounded-xl h-16 w-16 m-2">
+                <img src="{{ asset($comment->author->profile->profileImage() ?? '/storage/default/profile.jpg') }}" alt="" width="" height="" class="rounded-xl h-16 w-16 m-2">
             </div>
 
             <div>
