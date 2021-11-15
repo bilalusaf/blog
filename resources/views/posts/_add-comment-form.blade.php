@@ -5,7 +5,7 @@
 
                 @csrf
                 <heaader class="flex items-center">
-                    <img src="{{ asset('storage/' . auth()->user()->profile->image) }}"
+                    <img src="{{ asset(auth()->user()->profile->profileImage()) }}"
                          alt="" width="" height="" class="rounded-full h-12 w-12 m-2"
                     >
                     <h2 class="ml-4">Want to participate?</h2>
