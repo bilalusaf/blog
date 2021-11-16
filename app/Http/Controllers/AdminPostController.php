@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Intervention\Image\Facades\Image;
 
 class AdminPostController extends Controller
     {
@@ -27,10 +28,14 @@ class AdminPostController extends Controller
          */
         public function store(Post $post)
         {
+            $imagePath = request()->file('thumbnail')->store('thumbnails');
+            $image = Image::make(public_path("storage/{$imagePath}"))->orientate()->fit(1100,900);
+            $image->save();
+
             $attributes = array_merge($this->validatePost(), [
                 'user_id' => auth()->id(),
                 'slug' => Str::slug(request('title'),'-') . '-' . time(),
-                'thumbnail' => request()->file('thumbnail')->store('thumbnails'),
+                'thumbnail' => $imagePath,
             ]);
 
             Post::create($attributes);
@@ -49,6 +54,8 @@ class AdminPostController extends Controller
 
             if ($attributes['thumbnail'] ?? false) {
                 $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+                $image = Image::make(public_path("storage/{$attributes['thumbnail']}"))->orientate()->fit(1100,900);
+                $image->save();
             }
 
             $post->update($attributes);

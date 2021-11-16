@@ -3,7 +3,7 @@
             'user' => auth()->user(),
             'heading' => "Edit Post:"  . ucwords($post->title)])
 
-            <form method="POST" action="admin/posts/{{ $post->id }}" enctype="multipart/form-data">
+            <form method="POST" action="/admin/posts/{{ $post->id }}" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
 

@@ -16,7 +16,7 @@ class Post extends Model
 
     public function postThumbnail()
     {
-        $defaultImage = $this->image ? '/storage/' . $this->image : '/images/post.jpg';
+        $defaultImage = $this->thumbnail ? 'storage/' . $this->thumbnail : '/images/post.jpg';
 
         return $defaultImage;
     }
