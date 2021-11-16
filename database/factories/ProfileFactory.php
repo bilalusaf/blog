@@ -26,7 +26,7 @@ class ProfileFactory extends Factory
             'user_id' => User::factory(),
             'name' => User::factory(),
             'email' => User::factory(),
-            'description' => '<p>' . implode('</p><p>', $this->faker->paragraphs(1)) . '</p>',
+            'description' => $this->faker->paragraph(),
         ];
     }
 }
