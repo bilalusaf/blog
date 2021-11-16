@@ -35,6 +35,8 @@
 
                 <x-form.textarea name="body" rows="10">{{ old('body', $post->body) }}</x-form.textarea>
 
+                <input name="published_at" type="hidden" value="{{ now() }}">
+
                 <x-form.button>Update</x-form.button>
 
             </form>

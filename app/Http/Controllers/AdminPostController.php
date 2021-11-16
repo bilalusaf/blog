@@ -25,7 +25,7 @@ class AdminPostController extends Controller
         /**
          * @throws \Exception
          */
-        public function store()
+        public function store(Post $post)
         {
             $attributes = array_merge($this->validatePost(), [
                 'user_id' => auth()->id(),
@@ -62,7 +62,7 @@ class AdminPostController extends Controller
             return back()->with('success', 'Post Deleted!');
         }
 
-        protected function validatePost(Post $post = null): array
+        protected function validatePost(?Post $post = null): array
         {
             $post ??= new Post();
 
