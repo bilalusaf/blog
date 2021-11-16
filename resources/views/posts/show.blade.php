@@ -10,7 +10,7 @@
                             </p>
 
                             <div class="flex items-center lg:justify-center text-sm mt-4">
-                                <img class="rounded-lg" src="{{ URL::asset($post->author->profile->profileImage ?? '/images/profile.jpg') }}" alt="Lary avatar">
+                                <img class="rounded-lg" src="{{ URL::asset($post->author->profile->profileImage() ?? '/images/profile.jpg') }}" alt="Lary avatar">
                                 <div class="ml-3 text-left">
                                     <h5 class="font-bold">
                                         <a href="/?authors={{ $post->author->username }}">{{ $post->author->name }}</a>

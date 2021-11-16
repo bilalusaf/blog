@@ -16,24 +16,21 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
-        Category::factory()->count(10)->create();
+        $category = Category::factory()->count(10)->create();
 
-        User::factory()
-            ->has(Profile::factory()->state(function (array $attributes, User $user) {
-                return ['user_id' => $user->id];
-            }))
-            ->has(Post::factory()->count(50)
-                ->state(function (array $attributes, User $user, Category $category) {
-                return ['user_id' => $user->id, 'category_id' => $category->id];
-            })
-            ->has(Comment::factory()->count(3))
-                ->state(function (array $attributes, User $user, Post $post) {
-                return ['user_id' => $user->id, 'category_id' => $post->id];
-            }))
+        Profile::factory()
+            ->for(User::factory())
             ->create();
 
+        Post::factory()->count(25)
+            ->for(User::factory())
+            ->create();
 
+        Comment::factory()->count(2)
+            ->for(Post::factory())
+            ->create();
     }
 }
